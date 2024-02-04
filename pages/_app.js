@@ -1,5 +1,16 @@
-import "@/styles/globals.css";
+import "../styles/globals.css";
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
-}
+//Internal Import
+import { ChatAppProvider } from "../Context/ChatAppContext";
+import Navbar from "../Components/NavBar/Navbar";
+
+const Myapp = ({ Component, pageProps}) => (
+  <div>
+    <ChatAppProvider>
+      <Navbar />
+      <Component {...pageProps} />
+    </ChatAppProvider>
+  </div>
+);
+
+export default Myapp;
