@@ -7,35 +7,35 @@ export const checkIfWalletConnected = async () => {
     try {
         if(!window.ethereum) return console.log('Install Metamask');
         const accounts = await window.ethereum.request({
-            methods: "eth_accounts",
+            method: "eth_accounts",
         });
         firstAccount = accounts[0];
         return firstAccount;
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export const connectWallet = async () => {
     try {
         if(!window.ethereum) return console.log('Install Metamask');
         const accounts = await window.ethereum.request({
-            methods: 'eth_requestAccounts'
+            method: 'eth_requestAccounts',
         });
         const firstAccount = accounts[0];
         return firstAccount;
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 const fetchContract = (signerOrProvider) => 
-    new ethers.Contract(ChatAppABI, ChatAppAddress, signerOrProvider);
+    new ethers.Contract(ChatAppAddress, ChatAppABI, signerOrProvider);
 
 
 export const connectingWithContract = async () => {
     try {
-        const web3modal = new Web3Modal;
+        const web3modal = new Web3Modal();
         const connection = await web3modal.connect();
         const provider = new ethers.providers.Web3Provider(connection);
         const signer = provider.getSigner();
@@ -45,7 +45,7 @@ export const connectingWithContract = async () => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 
 export const convertTime = (time) => {
@@ -65,4 +65,4 @@ export const convertTime = (time) => {
         newTime.getFullYear();
 
         return realTime;
-}
+};
