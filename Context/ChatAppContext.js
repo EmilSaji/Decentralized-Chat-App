@@ -38,8 +38,8 @@ export const ChatAppProvider = ({ children }) => {
       setAccount(connectAccount);
 
       //GET USERNAME
-      // const userName = await contract.getUsername(connectAccount);
-      // setUserName(userName);
+      const userName = await contract.getUsername(connectAccount);
+      setUserName(userName);
 
       //GET MY FRIEND LIST
       const friendLists = await contract.getMyFriendList();
@@ -72,7 +72,7 @@ export const ChatAppProvider = ({ children }) => {
   //CREATE ACCOUNT
   const createAccount = async ({ name, accountAddress }) => {
     try {
-      // if (name || accountAddress)
+      // if (!name || !accountAddress)
       //   return setError("Name and AccAddress cannot be empty");
 
       const contract = await connectingWithContract();
@@ -81,6 +81,7 @@ export const ChatAppProvider = ({ children }) => {
       await getCreatedUser.wait();
       setLoading(false);
       window.location.reload();
+      router.push("/");
     } catch (error) {
       setError("Error while creating your account ! Please try again");
     }
@@ -89,7 +90,7 @@ export const ChatAppProvider = ({ children }) => {
   //ADD FRIEND
   const addFriends = async ({ name, accountAddress }) => {
     try {
-      if (name || accountAddress)
+      if (!name || !accountAddress)
         return setError("Name and AccAddress cannot be empty");
 
       const contract = await connectingWithContract();
@@ -107,7 +108,7 @@ export const ChatAppProvider = ({ children }) => {
   //SEND MESSAGE
   const sendMessage = async ({ msg, address }) => {
     try {
-      if (msg || address) return setError("Message cannot be empty");
+      if (!msg || !address) return setError("Message cannot be empty");
 
       const contract = await connectingWithContract();
       const addMessage = await contract.sendMessage(address, msg);

@@ -12,7 +12,7 @@ const Navbar = () => {
   const menuItems = [
     {
       menu: "All Users",
-      link: "allUser",
+      link: "alluser",
     },
     {
       menu: "CHAT",
