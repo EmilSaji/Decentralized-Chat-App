@@ -86,12 +86,18 @@ contract ChatApp {
     }
 
     //Get chat code
+    // function _getChatCode(address pubKey1, address pubKey2) internal pure returns(bytes32) {
+    //     if (pubKey1 < pubKey2) {
+    //         return keccak256(abi.encodePacked(pubKey1,pubKey2));
+    //     } else {
+    //         return keccak256(abi.encode(pubKey2, pubKey1));
+    //     }
+    // }
+
     function _getChatCode(address pubKey1, address pubKey2) internal pure returns(bytes32) {
-        if (pubKey1 > pubKey2) {
-            return keccak256(abi.encodePacked(pubKey1,pubKey2));
-        } else {
-            return keccak256(abi.encode(pubKey2, pubKey1));
-        }
+        address smallerAddress = pubKey1 < pubKey2 ? pubKey1 : pubKey2;
+        address largerAddress = pubKey1 < pubKey2 ? pubKey2 : pubKey1;
+        return keccak256(abi.encodePacked(smallerAddress, largerAddress));
     }
 
     //Send Message 

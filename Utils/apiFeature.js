@@ -58,6 +58,7 @@ export const convertTime = (time) => {
         "/" +
         newTime.getSeconds() +
         "/" +
+        " Date: "+
         newTime.getDate() +
         "/" +
         (newTime.getMonth() + 1) +
