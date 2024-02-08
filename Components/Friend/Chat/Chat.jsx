@@ -17,6 +17,7 @@ const Chat = ({
   loading,
   currentUserName,
   currentUserAddress,
+  readUser,
 }) => {
   const [message, setMessage] = useState("");
   const [chatData, setChatData] = useState({
@@ -30,6 +31,13 @@ const Chat = ({
     if (!router.isReady) return;
     setChatData(router.query);
   }, [router.isReady]);
+
+  useEffect(() => {
+    if(chatData.address) {
+      readMessage(router.query.address)
+      readUser(router.query.address)
+    }
+  }, [])
 
   return (
     <div className={Style.Chat}>
