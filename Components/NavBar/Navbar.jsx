@@ -20,19 +20,19 @@ const Navbar = () => {
     },
     {
       menu: "CONTACT",
-      link: "/",
+      link: "/temp",
     },
     {
       menu: "SETTING",
-      link: "/",
+      link: "/temp",
     },
     {
       menu: "FAQS",
-      link: "/",
+      link: "/temp",
     },
     {
       menu: "TERMS OF USE",
-      link: "/",
+      link: "/temp",
     },
   ];
 
